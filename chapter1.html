@@ -4,79 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chapter I – Discussions</title>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <style>
     body { font-family: Arial, sans-serif; max-width: 800px; margin: 2em; line-height: 1.6; }
     h1,h2 { color:#333; }
-    .discussion-section { margin-top:2em; padding:1em; border:1px solid #ccc; border-radius:5px; background:#f9f9f9; }
-    .question { font-weight:bold; margin-top:1em; }
-    textarea { width:100%; height:100px; margin-top:0.5em; }
-    button { margin-top:0.5em; padding:0.5em 1em; cursor:pointer; }
-    .comments { margin-top:1em; padding:1em; border-top:1px solid #ccc; }
-    .comment { margin-bottom:1em; padding-bottom:0.5em; border-bottom:1px dashed #aaa; }
+    .section { margin-top:2em; padding:1em; border:1px solid #ccc; border-radius:5px; background:#f9f9f9; }
+    .discussion-link { display:block; margin:1em 0; padding:0.5em; background:#e0e0e0; text-decoration:none; color:#000; border-radius:5px; }
+    .discussion-link:hover { background:#d0d0d0; }
   </style>
 </head>
 <body>
   <h1>Chapter I – Discussions</h1>
-  <p>Welcome to Chapter I. Here we explore how society organizes the basic conditions for living – food, housing, health, education – and discuss ways to make this fairer for everyone.</p>
-  
-  <div class="discussion-section">
-    <h2>Key Concepts</h2>
-    <ul>
-      <li>Basic living conditions</li>
-      <li>Security</li>
-      <li>Justice</li>
-    </ul>
-  </div>
+  <p>Welcome to Chapter I. Here we explore how society organizes the basic conditions for living – food, housing, health, education – and discuss ways to make this fairer for everyone. Click a question below to join the discussion.</p>
 
-  <div class="discussion-section">
+  <div class="section">
     <h2>Guiding Questions</h2>
+    
+    <a class="discussion-link" href="https://github.com/zer0ascii/mrxdis/discussions/1" target="_blank">
+      1. How can we ensure that no one goes hungry?
+    </a>
 
-    <p class="question">1. How can we ensure that no one goes hungry?</p>
-    <textarea id="q1"></textarea>
-    <button onclick="submitComment('q1')">Submit</button>
-    <div id="comments-q1" class="comments"></div>
+    <a class="discussion-link" href="https://github.com/zer0ascii/mrxdis/discussions/2" target="_blank">
+      2. How should we organize access to healthcare and education?
+    </a>
 
-    <p class="question">2. How should we organize access to healthcare and education?</p>
-    <textarea id="q2"></textarea>
-    <button onclick="submitComment('q2')">Submit</button>
-    <div id="comments-q2" class="comments"></div>
+    <a class="discussion-link" href="https://github.com/zer0ascii/mrxdis/discussions/3" target="_blank">
+      3. Who decides what is necessary for a dignified life?
+    </a>
 
-    <p class="question">3. Who decides what is necessary for a dignified life?</p>
-    <textarea id="q3"></textarea>
-    <button onclick="submitComment('q3')">Submit</button>
-    <div id="comments-q3" class="comments"></div>
   </div>
-
-  <script>
-    // Simpler local storage backend
-    function submitComment(qid) {
-      const textarea = document.getElementById(qid);
-      const comment = textarea.value.trim();
-      if (!comment) return alert("Please write something!");
-      
-      // Load previous comments
-      let comments = JSON.parse(localStorage.getItem(qid) || "[]");
-      comments.push(comment);
-      localStorage.setItem(qid, JSON.stringify(comments));
-      textarea.value = "";
-      renderComments(qid);
-    }
-
-    function renderComments(qid) {
-      const container = document.getElementById("comments-" + qid);
-      container.innerHTML = "";
-      let comments = JSON.parse(localStorage.getItem(qid) || "[]");
-      comments.forEach(c => {
-        const div = document.createElement("div");
-        div.className = "comment";
-        div.textContent = c;
-        container.appendChild(div);
-      });
-    }
-
-    // Render all comments on load
-    ['q1','q2','q3'].forEach(renderComments);
-  </script>
 </body>
 </html>
